@@ -1,0 +1,14 @@
+body, footer {
+    padding: 32px;
+    text-align: center;
+}
+
+footer {
+    background-color: #e7e7e9;
+}
+
+.card {
+    border: 0.5px solid #e7e7e9;
+    padding: 20px 28px;
+    border-radius: 2px;
+}
