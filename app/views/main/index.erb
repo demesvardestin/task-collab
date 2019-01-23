@@ -1,0 +1,10 @@
+<div class="card">
+    <h1><%= @message %></h1>
+    <% if @user %>
+        <form action="/logout" method="post">
+            <button type="submit">logout</button>
+        </form>
+    <% else %>
+        <a type="button" href="/login">login</a>
+    <% end %>
+</div>

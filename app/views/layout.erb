@@ -1,0 +1,61 @@
+<!DOCTYPE Html>
+<html>
+    <head>
+        <title>Sinatra Auth</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/application.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400" rel="stylesheet">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    </head>
+    <body>
+        <% if flash[:notice] %>
+            <div id="flash-notice" class="flash-container">
+                <%= flash[:notice] %>
+                <a onclick="$('.flash-container').remove();" class="flash-close">
+                    &times;
+                </a>
+            </div>
+        <% end %>
+        
+        <nav class="app-navbar">
+            <a href="/" class="navbar-brand nav-child">
+                Sinatra Modular
+            </a>
+            <span class="navbar-links nav-child">
+                <% if @user %>
+                    <a href="/" class="nav-link">Feed</a>
+                    <a href="/new" class="nav-link">New Task</a>
+                    <a href="/tasks" class="nav-link">Tasks</a>
+                    <form action="/logout" method="post">
+                        <button type="submit" class="nav-link btn">
+                            Logout
+                        </button>
+                    </form>
+                <% else %>
+                    <button class="nav-link btn" onclick="window.location.replace('/login')">
+                        Login
+                    </button>
+                    <button class="nav-link btn" onclick="window.location.replace('/register')">
+                        Register
+                    </button>
+                <% end %>
+            </span>
+            
+        </nav>
+        
+        <section id="inner-body">
+            <%= yield %>
+        </section>
+    </body>
+    <footer>
+        <span align="center">
+            &copy; Demesvar Destin
+        </span>
+    </footer>
+</html>

@@ -1,0 +1,19 @@
+<section id="new-task" class="col-4 offset-4">
+    <div class="card task-card">
+        <header>
+            <span>New Task</span>
+        </header>
+        
+        <form action="/tasks" method="post" id="task-form">
+            <div class="field">
+                <input type="text" class="control-form" name="task[content]" placeholder="What do you need to do?">
+            </div>
+            
+            <div class="actions">
+                <button type="submit" class="btn task-btn btn-block" disable-with="saving...">
+                    Save Task
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

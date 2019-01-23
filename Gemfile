@@ -11,6 +11,9 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'bcrypt'
+gem 'require_all'
+gem 'shotgun'
+gem 'rack-flash3'
 
 group :development, :test do
   gem 'sqlite3'
