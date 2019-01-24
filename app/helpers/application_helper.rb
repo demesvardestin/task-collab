@@ -9,6 +9,10 @@ module ApplicationHelper
         }
     end
     
+    def pluralize(noun, count)
+        "#{count} " << (count > 0 ? noun + 's' : noun)
+    end
+    
     def is_authenticated?(user)
         redirect '/' if user && user.authenticated(session)
     end

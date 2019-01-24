@@ -26,10 +26,35 @@ header > span {
 
 a {
     text-decoration: none;
+    color: #515151;
+}
+
+.box-shadow {
+    box-shadow: 0 6px 12px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.col-7 {
+    width: 57.88%;
+    padding: 0 15px;
+}
+
+.col-8 {
+    width: 66.66%;
+    padding: 0 15px;
 }
 
 .col-4 {
-    width: 33.33333%;
+    width: 33.33%;
+    padding: 0 15px;
+}
+
+.col-3 {
+    width: 25%;
+    padding: 0 15px;
 }
 
 .offset-4 {
@@ -65,6 +90,7 @@ a {
     border: 0.5px solid #e7e7e9;
     padding: 20px;
     border-radius: 2px;
+    margin-bottom: 10px;
 }
 
 .authentication-card {
@@ -143,8 +169,39 @@ nav {
     width: 100%;
 }
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+#priority-selection {
+    display: none;
+    position: absolute;
+    border: 1px solid #e7e7e9;
+    border-radius: 2px;
+    background-color: #fff;
+    margin-top: 0;
+}
+
+#priority-selection > div {
+    padding: 15px;
+    border-bottom: 0.5px solid #e7e7e9;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#priority-selection > div:hover {
+    background-color: #e7e7e9;
+}
+
+#task-dashboard {
+    border-right: 3px solid #e7e7e9;
+}
+
 @media only screen and (max-device-width: 768px) {
-    .authentication-area {
+    .col-4 {
         width: 100%;
         margin: 0;
     }

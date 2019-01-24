@@ -17,6 +17,7 @@ class ApplicationController < Sinatra::Base
     end
     
     before do
+        cache_control :public, :must_revalidate
         @user = current_user
     end
     
@@ -30,13 +31,16 @@ class ApplicationController < Sinatra::Base
     get '/tasks' do
         is_allowed? @user
         
-        @tasks = @user.tasks
+        @task_users = TaskUser.where(user_id: @user.id)
+        @tasks = Task.find(@task_users.map(&:task_id))
         erb :'tasks/index'
     end
     
     ## Tasks Show
     get '/tasks/:id' do
         @task = Task.find_by(id: params[:id])
+        @task_users = TaskUser.where(task_id: @task.id)
+        
         if @task.nil?
             redirect '/'
             flash[:notice] = "Page not found"
@@ -53,12 +57,23 @@ class ApplicationController < Sinatra::Base
         erb :'tasks/new'
     end
     
+    post '/join_task' do
+        is_allowed? @user
+        
+        @task = Task.find_by(id: params[:id])
+        TaskUser.create(user_id: @user.id, task_id: @task.id)
+        
+        redirect "/tasks/#{@task.id}"
+        flash[:notice] = "You have successfully joined this task group!"
+    end
+    
     ## Create Task
     post '/tasks' do
         is_allowed? @user
         
-        @task = Task.new(content: params[:content])
+        @task = Task.new(content: params[:content], priority: params[:priority].to_i)
         @task.save!
+        TaskUser.create(user_id: @user.id, task_id: @task.id)
         
         redirect "/tasks/#{@task.id}"
         flash[:notice] = "Task created!"
@@ -97,8 +112,8 @@ class ApplicationController < Sinatra::Base
     post '/register' do
         is_authenticated? @user
         
-        user = User.new(email: params['email'], password: params['password'])
-        user.save!
+        @user = User.new(email: params['email'], password: params['password'])
+        @user.save!
         session['user_id'] = @user.id
         redirect '/'
     end

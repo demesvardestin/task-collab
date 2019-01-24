@@ -1,9 +1,63 @@
-<section id="task-<%= @task.id %>" class="col-4 offset-4">
-    <div class="card task-card">
-        <header>
-            <span>Task: <%= @task.id %></span>
-        </header>
+<div class="row">
+    <section id="task-dashboard" class="col-3">
+        <div class="card">
+            <header style="text-align: left;">
+                <span>Collaborators</span>
+            </header>
+            
+            <hr>
+            
+            <% (@task_users ||= ['no collaborators']).each do |u| %>
+                <p><%= u.user.email if u.respond_to? :user %></p>
+            <% end %>
+        </div>
+    </section>
+    
+    <section id="task-<%= @task.id %>" class="col-8">
+        <div class="card task-card">
+            <header>
+                <span>Task: <%= @task.id %></span>
+            </header>
+            
+            <div class="task-content">
+                <p align="left"><b>Summary</b>: <%= @task.content %></p>
+            </div>
+                
+            <div class="task-content">
+                <p align="left"><b>Priority</b>: <%= @task.priority %></p>
+            </div>
+        </div>
         
-        <p align="left"><%= @task.content %></p>
-    </div>
-</section>
+        <% if @user %>
+            <% if @user.is_in @task %>
+                <div class="card">
+                    <header>
+                        <span>Invite Collaborators</span>
+                    </header>
+                    
+                    <form action="/invite_collaborators" method="post" id="invite-form">
+                        <div class="field">
+                            <input type="text" class="control-form" name="emails" placeholder="Emails, separated by a comma">
+                        </div>
+                        
+                        <div class="actions">
+                            <button class="btn btn-block" type="submit">
+                                Send Invites
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            <% else %>
+                <form action="/join_task?id=<%= @task.id %>" method="post">
+                    <button class="btn btn-block">
+                        Join Task
+                    </button>
+                </form>
+            <% end %>
+        <% else %>
+            <a href="/login" class="btn">
+               Log in to join task 
+            </a>
+        <% end %>
+    </section>
+</div>

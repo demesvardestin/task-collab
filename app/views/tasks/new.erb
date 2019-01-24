@@ -4,16 +4,38 @@
             <span>New Task</span>
         </header>
         
-        <form action="/tasks" method="post" id="task-form">
+        <form action="/tasks" method="post" id="task-form" data-disable-with="saving...">
             <div class="field">
-                <input type="text" class="control-form" name="task[content]" placeholder="What do you need to do?">
+                <input type="text" class="control-form" name="content" placeholder="What do you need to do?">
+            </div>
+            
+            <div class="field">
+                <input type="text" class="control-form" id="priority-input" name="priority"
+                    placeholder="select priority" onfocus="$('#priority-selection').show();"
+                    autocomplete="off">
+            </div>
+            
+            <div class="field">
+                <div id="priority-selection">
+                    <div id="p-1">1</div>
+                    <div id="p-2">2</div>
+                    <div id="p-3">3</div>
+                </div>
             </div>
             
             <div class="actions">
-                <button type="submit" class="btn task-btn btn-block" disable-with="saving...">
+                <button type="submit" class="btn task-btn btn-block">
                     Save Task
                 </button>
             </div>
         </form>
     </div>
 </section>
+
+<script type="text/javascript">
+    $('#priority-selection > div').on('click', function() {
+        value = $(this).text();
+        document.querySelector('#priority-input').value = value;
+        $('#priority-selection').hide();
+    });
+</script>

@@ -1,3 +1,16 @@
-<% @tasks.each do |t| %>
-    <p><%= t.content %></p>
-<% end %>
+<div class="row">
+    <% @tasks.each do |t| %>
+        <div class="col-3">
+            <a href="/tasks/<%= t.id %>">
+                <div class="card cursor-pointer" onmouseover="$(this).toggleClass('box-shadow');"
+                    onmouseout="$(this).toggleClass('box-shadow');">
+                    <p><%= t.content %></p>
+                    <p>priority: <%= t.priority %></p>
+                    <hr>
+                    
+                    <p><%= pluralize('collaborator', t.task_users.count) %></p>
+                </div>
+            </a>
+        </div>
+    <% end %>
+</div>
