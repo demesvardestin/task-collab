@@ -1,19 +1,19 @@
 <section id="new-task" class="col-4 offset-4">
     <div class="card task-card">
         <header>
-            <span>New Task</span>
+            <span>Edit Task</span>
         </header>
         
-        <form action="/tasks" method="post" id="task-form" data-disable-with="saving...">
+        <form action="/tasks/<%= @task.id %>" method="post" id="task-form" data-disable-with="saving...">
             <div class="field">
                 <textarea class="control-form" name="content"
-                    placeholder="What do you need to do?"></textarea>
+                    placeholder="What is your task about?"><%= @task.content %></textarea>
             </div>
             
             <div class="field">
                 <input type="text" class="control-form" id="priority-input" name="priority"
-                    placeholder="select priority" onfocus="$('#priority-selection').show();"
-                    autocomplete="off">
+                    value="<%= @task.priority %>" onfocus="$('#priority-selection').show();"
+                    autocomplete="off" placeholder="Select a priority for your task">
             </div>
             
             <div class="field">
@@ -26,7 +26,7 @@
             
             <div class="actions">
                 <button type="submit" class="btn task-btn btn-block">
-                    Save Task
+                    Update Task
                 </button>
             </div>
         </form>

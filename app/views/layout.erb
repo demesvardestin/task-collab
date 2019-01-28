@@ -5,12 +5,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/css/application.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="/js/application.js"></script>
     </head>
+    
     <body>
+        
         <% if flash[:notice] %>
             <div id="flash-notice" class="flash-container">
                 <%= flash[:notice] %>
@@ -35,10 +38,10 @@
                         </button>
                     </form>
                 <% else %>
-                    <button class="nav-link btn" onclick="window.location.replace('/login')">
+                    <button class="nav-link btn" onclick="window.location.replace('/login?redirect=<%= request.path_info %>')">
                         Login
                     </button>
-                    <button class="nav-link btn" onclick="window.location.replace('/register')">
+                    <button class="nav-link btn" onclick="window.location.replace('/register?redirect=<%= request.path_info %>')">
                         Register
                     </button>
                 <% end %>
@@ -49,10 +52,16 @@
         <section id="inner-body">
             <%= yield %>
         </section>
+        
+        <section id="chat-box-container"></section>
+        
     </body>
-    <footer>
-        <span align="center">
-            &copy; Demesvar Destin
-        </span>
-    </footer>
+    
+    <% if !@user %>
+        <footer>
+            <span align="center">
+                &copy; Demesvar Destin
+            </span>
+        </footer>
+    <% end %>
 </html>

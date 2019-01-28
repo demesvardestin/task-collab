@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     overflow-x: hidden !important;
@@ -16,7 +20,7 @@ header {
 }
 
 header > span {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
 }
 
@@ -29,6 +33,10 @@ a {
     color: #515151;
 }
 
+p {
+    font-size: 15px;
+}
+
 .box-shadow {
     box-shadow: 0 6px 12px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
 }
@@ -37,24 +45,33 @@ a {
     cursor: pointer;
 }
 
+*[class*="col"] {
+    padding: 0 15px;
+    margin-bottom: 15px;
+}
+
 .col-7 {
     width: 57.88%;
-    padding: 0 15px;
 }
 
 .col-8 {
     width: 66.66%;
-    padding: 0 15px;
+}
+
+.col-9 {
+    width: 75%;
 }
 
 .col-4 {
     width: 33.33%;
-    padding: 0 15px;
 }
 
 .col-3 {
     width: 25%;
-    padding: 0 15px;
+}
+
+.col-6 {
+    width: 50%;
 }
 
 .offset-4 {
@@ -64,6 +81,10 @@ a {
 .field, .action {
     display: flex;
     flex-wrap: wrap;
+}
+
+.display-block {
+    display: block !important;
 }
 
 .control-form {
@@ -76,14 +97,19 @@ a {
     margin-bottom: 10px;
     padding-left: 8px;
     padding-right: 8px;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .btn-block {
     display: block;
     width: 100%;
     height: 45px;
-    font-size: 16px;
+    font-size: 15px;
+}
+
+hr {
+    background-color: #e7e7e9;
+    border-color: #e7e7e9;
 }
 
 .card {
@@ -91,6 +117,96 @@ a {
     padding: 20px;
     border-radius: 2px;
     margin-bottom: 10px;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+textarea {
+    height: 80px;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+#chat-box-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end !important;
+    padding: 0 30px;
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 0;
+    width: 275px;
+    height: 325px;
+    box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
+    background-color: #e7e7e9;
+    border: 0.5px solid #e7e7e9;
+    border-radius: 2px;
+}
+
+.chat-header {
+    text-align: left !important;
+    background-color: #262626;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 15px;
+    box-shadow: 0 0 20px 0 rgba(50,50,70,.08);
+    margin-bottom: 0;
+}
+
+.chat-header > span {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.chat-close {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.chat-box-form {
+    position: fixed;
+    bottom: 0;
+    width: 275px;
+}
+
+.chat-box-form > .chat-input {
+    margin: 0 !important;
+    padding-top: 10px;
+    min-height: 40px;
+    max-height: 80px;
+    box-shadow: 0 20px 3px 0 rgba(50,50,70,.08);
+    font-size: 14px !important;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chat-messages-container {
+    padding: 10px 15px 0 15px;
+    overflow-y: auto;
+    max-height: 225px;
+    height: 225px;
+}
+
+.message-bubble {
+    background-color: #fff;
+    border: 0.5px solid #fff;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#updates-posted {
+    min-height: 40px;
 }
 
 .authentication-card {
@@ -102,9 +218,9 @@ a {
     text-align: center;
 }
 
-.flash-container {
+#flash-notice, .flash-container {
     text-align: center;
-    padding: 15px;
+    padding: 20px 30px;
     color: #fff;
     background-color: #004999;
     opacity: 0.7;
@@ -138,7 +254,7 @@ nav {
 }
 
 .nav-link {
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 20px;
     vertical-align: middle;
     color: #007bff;
@@ -165,6 +281,11 @@ nav {
     background-color: #006ee5;
 }
 
+.link {
+    text-decoration: underline;
+    color: #007bff;
+}
+
 .login-form {
     width: 100%;
 }
@@ -188,7 +309,7 @@ nav {
     padding: 15px;
     border-bottom: 0.5px solid #e7e7e9;
     color: #000;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -196,13 +317,22 @@ nav {
     background-color: #e7e7e9;
 }
 
-#task-dashboard {
-    border-right: 3px solid #e7e7e9;
+.task-update-card {
+    margin-bottom: 0;
+}
+
+#task-update-content, #task-update-content:focus {
+    box-shadow: none !important;
 }
 
 @media only screen and (max-device-width: 768px) {
-    .col-4 {
+    *[class*="col"] {
         width: 100%;
         margin: 0;
+    }
+    
+    .card {
+        display: block !important;
+        width: 100%;
     }
 }

@@ -14,6 +14,7 @@ gem 'bcrypt'
 gem 'require_all'
 gem 'shotgun'
 gem 'rack-flash3'
+gem 'pony'
 
 group :development, :test do
   gem 'sqlite3'

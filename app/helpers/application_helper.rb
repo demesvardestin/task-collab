@@ -20,4 +20,15 @@ module ApplicationHelper
     def is_allowed?(user)
         redirect '/login' if !user && authentication_required
     end
+    
+    def is_authorized?(user, task)
+        if task.user_id != user.id
+            redirect '/'
+            flash[:notice] = "You are not allowed to access this page!"
+        end
+    end
+    
+    def truncate(string, value)
+        string.length <= value ? string : string[0..value] + '...'
+    end
 end

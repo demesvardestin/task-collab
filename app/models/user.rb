@@ -6,6 +6,9 @@ require_relative 'task_user.rb'
 class User < ActiveRecord::Base
     include BCrypt
     has_and_belongs_to_many :tasks
+    has_many :task_updates
+    has_many :chats
+    has_many :messages, through: :chat
     
     def authenticated(_session_)
         _session_['user_id'] == id

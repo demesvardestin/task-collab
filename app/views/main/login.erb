@@ -5,6 +5,7 @@
         </header>
         
         <form action="/login" method="post" id="login-form" data-disable-with="logging you in...">
+            <input type="hidden" name="redirect" value="<%= params[:redirect] %>">
             <div class="field">
                 <input type="email" name="email" placeholder="email" class="control-form">
             </div>
