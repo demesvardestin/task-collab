@@ -1,4 +1,6 @@
 ## TaskCollab
+Demo - [TaskCollab](https://taskcollab.herokuapp.com "TaskCollab")
+![alt text](https://github.com/demesvardestin/sinatra-sample-app/raw/master/public/images/task_collab.png "TaskCollab")
 
 ### App Details
 This is a simple project collaboration app built with Sinatra and the following
@@ -22,7 +24,6 @@ The app demonstrates key ruby/rails components such as:
 - sessions/cookies
 - flash messages
 - basic security
-- 
 
 My primary focus while building this app was to avoid using major frameworks
 such as Bootstrap, React, or Rails in order to demonstrate my understanding
