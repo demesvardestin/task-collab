@@ -1,0 +1,12 @@
+F, [2019-01-29T03:13:46.188435 #8158] FATAL -- : error adding listener addr=tmp/sockets/unicorn.sock
+/usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/socket_helper.rb:146:in `bind_listen': Don't know how to bind: tmp/sockets/unicorn.sock (ArgumentError)
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/http_server.rb:241:in `listen'
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/http_server.rb:851:in `block in bind_new_listeners!'
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/http_server.rb:851:in `each'
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/http_server.rb:851:in `bind_new_listeners!'
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/lib/unicorn/http_server.rb:140:in `start'
+	from /usr/local/rvm/gems/ruby-2.4.0/gems/unicorn-5.4.1/bin/unicorn:126:in `<top (required)>'
+	from /usr/local/rvm/gems/ruby-2.4.0/bin/unicorn:22:in `load'
+	from /usr/local/rvm/gems/ruby-2.4.0/bin/unicorn:22:in `<main>'
+	from /usr/local/rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `eval'
+	from /usr/local/rvm/gems/ruby-2.4.0/bin/ruby_executable_hooks:15:in `<main>'

@@ -1,3 +1,7 @@
+:root {
+    --theme-border-radius: 3.5px;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -105,7 +109,7 @@ p {
 
 .control-form {
     box-shadow: none;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     height: 45px;
     border: 1px solid #e7e7e9;
     display: block;
@@ -131,7 +135,7 @@ hr {
 .card {
     border: 0.5px solid #e7e7e9;
     padding: 20px;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     margin-bottom: 15px;
     box-shadow: 0 25px 25px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
 }
@@ -164,7 +168,7 @@ textarea {
     box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
     background-color: #e7e7e9;
     border: 0.5px solid #e7e7e9;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
 }
 
 .chat-header {
@@ -217,7 +221,7 @@ textarea {
 .message-bubble {
     background-color: #fff;
     border: 0.5px solid #fff;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     padding: 5px;
     font-size: 14px;
     margin-bottom: 5px;
@@ -295,7 +299,7 @@ nav {
     background-color: #007bff;
     padding: 8px 20px;
     border: 1px solid #007bff;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     cursor: pointer;
     color: #fff;
     box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
@@ -369,7 +373,7 @@ nav {
     display: none;
     position: absolute;
     border: 1px solid #e7e7e9;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     background-color: #fff;
     margin-top: 0;
 }
@@ -396,7 +400,7 @@ nav {
     padding: 15px;
     min-height: 120px;
     width: 245px;
-    border-radius: 3.5px;
+    border-radius: var(--theme-border-radius);
     box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
     position: fixed;
     bottom: 45px;

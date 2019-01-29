@@ -15,6 +15,7 @@ gem 'require_all'
 gem 'shotgun'
 gem 'rack-flash3'
 gem 'pony'
+gem 'unicorn'
 
 group :development, :test do
   gem 'sqlite3'
