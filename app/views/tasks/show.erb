@@ -1,26 +1,31 @@
 <div class="row">
     <section id="task-dashboard" class="col-3">
-        <div class="card">
-            <p>Status: <%= @task.status %></p>
+        <div class="card" id="task-details">
+            <header style="text-align: left !important;">
+                <p><%= @task.content %></p>
+            </header>
             <% if @task._belongs_to? @user %>
-                <p>
-                    <a href="/tasks/<%= @task.id %>/edit">edit</a>
-                </p>
+                <button class="btn btn-gray"
+                    onclick="window.location.replace('/tasks/<%= @task.id %>/edit')">
+                    Edit
+                </button>
+                <button class="btn btn-green float-right"
+                    onclick="window.location.replace('/tasks/<%= @task.id %>/edit')">
+                    Mark Complete
+                </button>
             <% end %>
         </div>
         
-        <div class="card">
+        <div class="card" id="collaborators-card">
             <header style="text-align: left;">
-                <span>Collaborators</span>
+                <p>Collaborators</p>
             </header>
             
-            <hr>
-            
             <% (@task_users ||= ['no collaborators']).each do |u| %>
-                <p>
-                    <%= u.user.email if u.respond_to? :user %>
-                    <% if u != @user %>
-                        <a class="link cursor-pointer" onclick="newMessage('<%= u.user.email %>')">message</a>
+                <p style="margin-bottom: 10px;">
+                    <%= u.user.username if u.respond_to? :user %>
+                    <% unless u.user == @user || !@user %>
+                        [<a class="link cursor-pointer" onclick="newMessage('<%= u.user.email %>')">message</a>]
                     <% end %>
                 </p>
             <% end %>
@@ -32,14 +37,14 @@
                     <span>Chat</span>
                 </header>
                 
-                <hr>
-                
                 <% if @user.chats.present? %>
                     <% @user.chats.each do |c| %>
-                        <p>
-                            <%= c.correspondent.email %><br />
-                            <%= truncate(c.last_message.content, 20) %>
-                        </p>
+                        <div class="chat" onclick="newMessage('<%= c.correspondent.email %>')">
+                            <a class="link">
+                                <%= c.correspondent.email %>
+                            </a>
+                            <p class="chat-snippet"><%= truncate(c.last_message.content, 20) %></p>
+                        </div>
                     <% end %>
                 <% else %>
                     <em>No conversations found</em>
@@ -73,57 +78,52 @@
             <% end %>
         <% else %>
             <button onclick="window.location.replace('/login?redirect=<%= request.path_info %>')"
-                class="btn btn-block">
+                class="btn btn-grey height-50 btn-block">
                Log in to join task 
             </button>
         <% end %>
     </section>
     
     <section id="task-<%= @task.id %>" class="col-9">
-        <div class="card task-card">
-            <header style="text-align: left;">
-                <span>Task: <%= @task.id %></span>
-            </header>
-            
-            <hr>
-            
-            <div class="task-content">
-                <p align="left"><b>Summary</b>: <%= @task.content %></p>
-            </div>
-                
-            <div class="task-content">
-                <p align="left"><b>Priority</b>: <%= @task.priority %></p>
-            </div>
-        </div>
-        <div class="card task-update-card">
-            <header style="text-align: left;">
-                <span>Updates</span>
-            </header>
-            
-            <hr>
-            
-            <section id="updates-posted">
+        <div class="card" id="task-card">
+            <div id="updates-posted" class="row">
                 <% if @task.task_updates.present? %>
                     <% @task.task_updates.each do |u| %>
-                        <p>
-                            <b><%= u.user.email %></b>: <%= u.content %>
-                        </p>
+                        <div class="col-3">
+                            <div class="update card">
+                                <p>
+                                    <b><%= u.user.username %></b>: <%= u.content %>
+                                </p>
+                                <p class="update-timestamp">
+                                    <%= u.created_at.strftime('%b %e, %Y') %>
+                                </p>
+                            </div>
+                        </div>
                     <% end %>
                 <% else %>
-                    <em>No updats</em>
+                    <span id="no-updates">No updates</span>
                 <% end %>
-            </section>
+            </div>
             
-            <hr>
-            
-            <form action="/add_update" method="post">
-                <input type="hidden" name="task_id" value="<%= @task.id %>">
-                <textarea class="control-form" id="task-update-content"
-                    name="content" placeholder="Add an update..."></textarea>
-                    
-                <div class="actions" align="right">
-                    <button type="submit" class="btn">Add Update</button>
+            <% if @user && @user.is_in(@task) %>
+                <div class="display-block" align="right">
+                    <button class="btn btn-grey height-50" onclick="showNewUpdateForm()" id="new-update-btn">
+                        Add An Update
+                    </button>
                 </div>
+            <% end %>
+            
+            <form action="/add-update" method="post" id="new-update-form" data-remote="true">
+                <input type="hidden" name="task_id" value="<%= @task.id %>" id="update-task-id">
+                <textarea class="control-form" name="content"
+                    placeholder="What's your update?" id="update-input"></textarea>
+                    
+                <a onclick="$('#new-update-form').hide()"
+                    class="link no-underline close-input">close</a>
+                    
+                <button class="btn float-right">
+                    submit
+                </button>
             </form>
         </div>
     </section>
@@ -203,4 +203,40 @@
             messagesContainer.append(messageBubble);
         }
     }
+    
+    var updateForm = document.getElementById('new-update-form');
+    var userEmail = $('#user-email').text();
+    
+    updateForm.addEventListener('submit', function(event, userEmail) {
+        event.preventDefault();
+        
+        var text = document.querySelector('#update-input').value;
+        var taskID = document.querySelector('#update-task-id').value;
+        
+        $.post('/add_update', {content: text, task_id: taskID});
+        $('#updates-posted').append(`
+            <div class="col-3">
+                <div class="update card">
+                    <p>
+                        <b>` + userEmail + `</b>: ` + text + `
+                    </p>
+                    <p class="update-timestamp">
+                        ` + "<%= Time.now.strftime('%b %e, %Y')%>" + `
+                    </p>
+                </div>
+            </div>
+        `);
+            
+        // form.reset();
+    });
+    
+    function showNewUpdateForm() {
+        $(this).hide();
+        $('#new-update-form').show();
+    }
+    
+    function minimize() {
+        
+    }
+    
 </script>

@@ -25,7 +25,7 @@ header > span {
 }
 
 #inner-body {
-    padding: 40px 30px 60px 30px;
+    padding: 30px 30px 60px 30px;
 }
 
 a {
@@ -33,12 +33,28 @@ a {
     color: #515151;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
 p {
     font-size: 15px;
 }
 
+.white {
+    color: #fff !important;
+}
+
+.black {
+    color: #000 !important;
+}
+
+.no-underline {
+    text-decoration: none !important;
+}
+
 .box-shadow {
-    box-shadow: 0 6px 12px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
+    box-shadow: 0 6px 15px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
 }
 
 .cursor-pointer {
@@ -89,7 +105,7 @@ p {
 
 .control-form {
     box-shadow: none;
-    border-radius: 2px;
+    border-radius: 3.5px;
     height: 45px;
     border: 1px solid #e7e7e9;
     display: block;
@@ -115,8 +131,9 @@ hr {
 .card {
     border: 0.5px solid #e7e7e9;
     padding: 20px;
-    border-radius: 2px;
-    margin-bottom: 10px;
+    border-radius: 3.5px;
+    margin-bottom: 15px;
+    box-shadow: 0 25px 25px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
 }
 
 .float-right {
@@ -147,17 +164,18 @@ textarea {
     box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
     background-color: #e7e7e9;
     border: 0.5px solid #e7e7e9;
-    border-radius: 2px;
+    border-radius: 3.5px;
 }
 
 .chat-header {
     text-align: left !important;
     background-color: #262626;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
+    border-top-left-radius: 3.5px;
+    border-top-right-radius: 3.5px;
     padding: 15px;
     box-shadow: 0 0 20px 0 rgba(50,50,70,.08);
     margin-bottom: 0;
+    cursor: pointer;
 }
 
 .chat-header > span {
@@ -199,7 +217,7 @@ textarea {
 .message-bubble {
     background-color: #fff;
     border: 0.5px solid #fff;
-    border-radius: 5px;
+    border-radius: 3.5px;
     padding: 5px;
     font-size: 14px;
     margin-bottom: 5px;
@@ -240,7 +258,8 @@ textarea {
 
 nav {
     padding: 20px 30px;
-    background-color: #e7e7e9;
+    background-color: #fff;
+    border-bottom: 0.5px solid #e7e7e9;
 }
 
 .navbar-brand {
@@ -255,9 +274,9 @@ nav {
 
 .nav-link {
     font-size: 15px;
-    margin-left: 20px;
+    margin-left: 25px;
     vertical-align: middle;
-    color: #007bff;
+    color: #737374;
 }
 
 .nav-link.btn {
@@ -268,13 +287,63 @@ nav {
     display: inline;
 }
 
+.height-50 {
+    height: 50px;
+}
+
 .btn {
     background-color: #007bff;
     padding: 8px 20px;
     border: 1px solid #007bff;
-    border-radius: 2px;
+    border-radius: 3.5px;
     cursor: pointer;
     color: #fff;
+    box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
+}
+
+.btn-white {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000;
+}
+
+.btn-white:hover {
+    background-color: #f9f9f9 !important;
+}
+
+.btn-blue {
+    background-color: #17a2b8;
+    border-color: #17a2b8 !important;
+    color: #fff;
+}
+
+.btn-grey, .btn-gray {
+    background-color: #6c757d;
+    border-color: #6c757d !important;
+    color: #fff;
+}
+
+.btn-grey:hover, .btn-gray:hover {
+    background-color: #616970 !important;
+    border-color: #616970 !important;
+    color: #fff;
+}
+
+.btn-green {
+    background-color: #28a745;
+    border-color: #28a745 !important;
+    color: #fff;
+}
+
+.btn-green:hover {
+    background-color: #24963e !important;
+    border-color: #24963e !important;
+    color: #fff;
+}
+
+.btn-blue:hover {
+    background-color: #1491a5;
+    border-color: #1491a5 !important;
 }
 
 .btn:hover {
@@ -300,7 +369,7 @@ nav {
     display: none;
     position: absolute;
     border: 1px solid #e7e7e9;
-    border-radius: 2px;
+    border-radius: 3.5px;
     background-color: #fff;
     margin-top: 0;
 }
@@ -321,8 +390,107 @@ nav {
     margin-bottom: 0;
 }
 
+#new-update-form {
+    display: none;
+    background-color: #fff;
+    padding: 15px;
+    min-height: 120px;
+    width: 245px;
+    border-radius: 3.5px;
+    box-shadow: 0 10px 16px 0 rgba(50,50,70,.08), 0 3px 5px 0 rgba(0,0,0,.05);
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+}
+
+.close-input {
+    text-align: right !important;
+    cursor: pointer;
+}
+
+.close-input:hover {
+    text-decoration: underline !important;
+}
+
+#update-input {
+    border: none !important;
+    box-shadow: none;
+    font-size: 15px;
+    height: 105px;
+    padding: 0;
+}
+
+#update-input:focus {
+    box-shadow: none !important;
+    border: 0.5px solid transparent !important;
+    color: #616970;
+}
+
+.status-green {
+    color: #28a745;
+}
+
+.status-red {
+    color: #dc3545;
+}
+
+.display-block {
+    display: block;
+}
+
+#task-card {
+    background-color: #28a745;
+    border-color: #28a745 !important;
+}
+
+header > p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#task-details, #collaborators-card {
+    background-color: #fff;
+}
+
+#updates-posted {
+    min-height: 400px;
+}
+
+#new-update-btn {
+    height: 40px;
+    font-size: 15px;
+}
+
+.update-timestamp {
+    color: #fff;
+    font-size: 12px;
+    text-align: right;
+}
+
 #task-update-content, #task-update-content:focus {
     box-shadow: none !important;
+}
+
+.update {
+    background-color: #ffc107;
+    border: 0.5px solid #ffc107;
+}
+
+.chat {
+    border-bottom: 0.5px solid #e7e7e9;
+    border-top: 0.5px solid #e7e7e9;
+    font-size: 15px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.chat-snippet {
+    margin-top: 10px;
+    color: #a1a1a3;
+}
+
+.text-muted {
+    color: #a1a1a3 !important;
 }
 
 @media only screen and (max-device-width: 768px) {

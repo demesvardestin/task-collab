@@ -1,6 +1,6 @@
 ## TaskCollab
 Demo - [TaskCollab](https://taskcollab.herokuapp.com "TaskCollab")
-![alt text](https://github.com/demesvardestin/sinatra-sample-app/raw/master/public/images/task_collab.png "TaskCollab")
+![alt text](https://github.com/demesvardestin/sinatra-sample-app/raw/master/public/images/task_collab_update.png "TaskCollab")
 
 ### App Details
 This is a simple project collaboration app built with Sinatra, providing the following
@@ -22,6 +22,7 @@ SQLITE (development database)
 Pony (email)
 Puma (server)
 Vanilla CSS/Javascript (no frameworks!)
+Nginx (development/test)
 ```
 
 The app demonstrates key ruby/rails components such as:

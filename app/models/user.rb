@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
         @password = Password.create(new_password)
         self.password_hash = @password
     end
+    
+    def username
+        email.split('@')[0]
+    end
 end

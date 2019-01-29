@@ -13,7 +13,7 @@
     </head>
     
     <body>
-        
+        <span style='display: none;'><%= @user.email if @user %></span>
         <% if flash[:notice] %>
             <div id="flash-notice" class="flash-container">
                 <%= flash[:notice] %>
@@ -25,15 +25,15 @@
         
         <nav class="app-navbar">
             <a href="/" class="navbar-brand nav-child">
-                Sinatra Modular
+                TaskCollab
             </a>
             <span class="navbar-links nav-child">
                 <% if @user %>
                     <a href="/" class="nav-link">Feed</a>
                     <a href="/new" class="nav-link">New Task</a>
                     <a href="/tasks" class="nav-link">Tasks</a>
-                    <form action="/logout" method="post">
-                        <button type="submit" class="nav-link btn">
+                    <form action="/logout" method="post" class="nav-link ">
+                        <button type="submit" class="btn">
                             Logout
                         </button>
                     </form>

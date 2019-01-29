@@ -6,8 +6,8 @@
         
         <form action="/tasks/<%= @task.id %>" method="post" id="task-form" data-disable-with="saving...">
             <div class="field">
-                <textarea class="control-form" name="content"
-                    placeholder="What is your task about?"><%= @task.content %></textarea>
+                <input type="text" class="control-form" name="content"
+                    placeholder="What is your task about?">
             </div>
             
             <div class="field">

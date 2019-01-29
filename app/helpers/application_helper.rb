@@ -31,4 +31,13 @@ module ApplicationHelper
     def truncate(string, value)
         string.length <= value ? string : string[0..value] + '...'
     end
+    
+    def status_color(status)
+        case status
+        when 'incomplete'
+            'status-red'
+        when 'complete'
+            'status-green'
+        end
+    end
 end
