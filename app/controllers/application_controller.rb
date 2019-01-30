@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
     
     ## Index
     get '/' do
-        @message = "Welcome #{@user.email}!" if @user
+        @tasks = Task.all
         erb :'main/index'
     end
     
@@ -54,6 +54,9 @@ class ApplicationController < Sinatra::Base
             redirect '/'
             flash[:notice] = "Page not found"
         end
+        
+        p @task
+        p @user.id if @user
         
         erb :'tasks/show'
     end
@@ -119,7 +122,7 @@ class ApplicationController < Sinatra::Base
     post '/tasks' do
         is_allowed? @user
         
-        @task = Task.new(content: params[:content], priority: params[:priority].to_i)
+        @task = Task.new(content: params[:content], priority: params[:priority].to_i, user_id: @user.id)
         @task.save!
         TaskUser.create(user_id: @user.id, task_id: @task.id)
         
@@ -158,8 +161,16 @@ class ApplicationController < Sinatra::Base
         erb :'main/chat.js', :layout => false
     end
     
-    get '/test_erb_js' do
-        erb :'test.js'
+    post '/mark_complete' do
+        @task = Task.find_by(id: params[:id])
+        
+        if !@task.was_created_by(@user)
+            return [404, ['Unauthorized action!']]
+        end
+        
+        @task.update(done: true)
+        
+        redirect "/tasks/#{@task.id}"
     end
     
     ## Registration - GET

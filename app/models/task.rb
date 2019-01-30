@@ -14,7 +14,7 @@ class Task < ActiveRecord::Base
 		done ? 'completed' : 'incomplete'
 	end
 	
-	def _belongs_to?(user)
+	def was_created_by(user)
 		return false if !user
 		user_id == user.id
 	end

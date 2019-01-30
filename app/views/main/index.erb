@@ -1,3 +1,19 @@
-<div class="card">
-    <p id="test">loading...</p>
-</div>
+<section class="row" id="all-tasks">
+    <% if @tasks.present? %>
+        <% @tasks.each do |t| %>
+            <div class="col-3">
+                <a href="/tasks/<%= t.id %>">
+                    <div class="card cursor-pointer task-card">
+                        <h4><%= t.content %></h4>
+                        <p>priority: <%= t.priority %></p>
+                        <hr>
+                        
+                        <p><%= pluralize('contributor', t.task_users.count) %></p>
+                    </div>
+                </a>
+            </div>
+        <% end %>
+    <% else %>
+        <h4 style="margin: auto;">No tasks found</h4>
+    <% end %>
+</section>

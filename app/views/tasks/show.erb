@@ -4,13 +4,13 @@
             <header style="text-align: left !important;">
                 <p><%= @task.content %></p>
             </header>
-            <% if @task._belongs_to? @user %>
+            <% if @task.was_created_by @user %>
                 <button class="btn btn-gray"
                     onclick="window.location.replace('/tasks/<%= @task.id %>/edit')">
                     Edit
                 </button>
                 <button class="btn btn-green float-right"
-                    onclick="$.get('/test_erb_js');">
+                    onclick="$.post('/mark_complete', { id: <%= @task.id %>});">
                     Mark Complete
                 </button>
             <% end %>
@@ -18,10 +18,10 @@
         
         <div class="card" id="collaborators-card">
             <header style="text-align: left;">
-                <p>Collaborators</p>
+                <p>Contributors</p>
             </header>
             
-            <% (@task_users ||= ['no collaborators']).each do |u| %>
+            <% (@task_users ||= ['no contributors']).each do |u| %>
                 <p style="margin-bottom: 10px;">
                     <%= u.user.username if u.respond_to? :user %>
                     <% unless u.user == @user || !@user %>
