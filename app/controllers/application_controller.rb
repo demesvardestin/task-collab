@@ -96,8 +96,8 @@ class ApplicationController < Sinatra::Base
         @task = Task.find_by(id: params[:id])
         TaskUser.create(user_id: @user.id, task_id: @task.id)
         
-        redirect "/tasks/#{@task.id}"
         flash[:notice] = "You have successfully joined this task group!"
+        redirect "/tasks/#{@task.id}"
     end
     
     ## Send Collaborator Invite
@@ -156,6 +156,10 @@ class ApplicationController < Sinatra::Base
         Message.create(chat_id: @chat.id, content: params[:content], user_id: @user.id)
         
         erb :'main/chat.js', :layout => false
+    end
+    
+    get '/test_erb_js' do
+        erb :'test.js'
     end
     
     ## Registration - GET

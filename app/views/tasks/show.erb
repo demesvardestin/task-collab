@@ -10,7 +10,7 @@
                     Edit
                 </button>
                 <button class="btn btn-green float-right"
-                    onclick="window.location.replace('/tasks/<%= @task.id %>/edit')">
+                    onclick="$.get('/test_erb_js');">
                     Mark Complete
                 </button>
             <% end %>
@@ -101,7 +101,7 @@
                         </div>
                     <% end %>
                 <% else %>
-                    <span id="no-updates">No updates</span>
+                    <p id="no-updates">No updates posted yet</p>
                 <% end %>
             </div>
             
@@ -132,15 +132,17 @@
 <script type="text/javascript">
     
     var updateForm = document.getElementById('new-update-form');
-    var userEmail = $('#user-email').text();
     
-    updateForm.addEventListener('submit', function(event, userEmail) {
+    updateForm.addEventListener('submit', function(event) {
         event.preventDefault();
         
+        var userEmail = $('#user-email').text().split('@')[0];
         var text = document.querySelector('#update-input').value;
         var taskID = document.querySelector('#update-task-id').value;
         
         $.post('/add_update', {content: text, task_id: taskID});
+        
+        $('#no-updates').remove();
         $('#updates-posted').append(`
             <div class="col-3">
                 <div class="update card">
@@ -154,7 +156,7 @@
             </div>
         `);
             
-        form.reset();
+        updateForm.reset();
     });
     
 </script>
