@@ -1,6 +1,6 @@
 ## TaskCollab
 Demo - [TaskCollab](https://taskcollab.herokuapp.com "TaskCollab")
-![alt text](https://github.com/demesvardestin/sinatra-sample-app/raw/master/public/images/task_collab_update.png "TaskCollab")
+![taskcollab](https://github.com/demesvardestin/sinatra-sample-app/raw/master/public/images/task_collab_update.png "TaskCollab")
 
 ### App Details
 This is a simple project collaboration app built with Sinatra, providing the following
